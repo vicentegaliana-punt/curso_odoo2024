@@ -1,0 +1,26 @@
+<!-- create action view -->
+<odoo>
+    <record id="action_sport_issue" model="ir.actions.act_window">
+        <field name="name">Sport Issue</field>
+        <field name="res_model">sport.issue</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <!-- <field name="domain">[]</field> -->
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new sport isuue</p>
+        </field>
+    </record>
+
+    <menuitem id="sport_menu" 
+        name="Sport Association" 
+        sequence="10">
+
+        <menuitem 
+        id="sport_issue_menu" 
+        name="Sport Issues" 
+        action="sports_association.action_sport_issue" 
+        sequence="10"/> 
+
+    </menuitem>  
+
+</odoo>

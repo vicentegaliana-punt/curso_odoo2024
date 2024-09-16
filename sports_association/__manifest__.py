@@ -13,6 +13,7 @@
         "base",
     ],
     "data": [
-
+        "security/ir.model.access.csv",
+        "views/sport_issue.xml",
     ],
 }
