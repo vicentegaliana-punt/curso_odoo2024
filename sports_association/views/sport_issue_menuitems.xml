@@ -1,4 +1,4 @@
-<!-- create action view -->
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="action_sport_issue" model="ir.actions.act_window">
         <field name="name">Sport Issue</field>
