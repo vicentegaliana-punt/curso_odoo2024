@@ -7,3 +7,8 @@ class SportLicense(models.Model):
     partner_id=fields.Many2one('res.partner',string='Partner') #res.partner=contactos de odoo
     start_date=fields.Datetime(string='Start Date')
     end_date=fields.Datetime(string='End Date')
+    comment=fields.Text(string='Comment')
+
+    def nombre_metodo(self):
+        # TODO: código de mi método
+        pass

@@ -1,53 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!-- Vista Lista -->
-<record id="sport_issue_view_tree" model="ir.ui.view">
-    <field name="name">sport.issue.view.tree</field>
-    <field name="model">sport.issue</field>
-    <field name="arch" type="xml">
-        <tree multi_edit="1" string="Issues">
-            <field name="secuence" widget="handle"></field>
-            <field name="name"></field>
-            <field name="date" optional="show"></field>
-            <field name="user_id" optional="hide"></field>
-            <field name="state" widget="badge"></field>
-        </tree>
-    </field>
-</record>
-<!-- Vista Form -->
-<record id="sport_issue_view_form" model="ir.ui.view">
-    <field name="name">sport_issue.view.form</field>
-    <field name="model">sport.issue</field>
-    <field name="arch" type="xml">
-        <form string="Issues">
-            <header>
-                <field options="{'clickable':1}" name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
-            </header>
-            <sheet>
-                <div class="oe_title">
-                    <h1>
-                        <field name="name" placeholder="Issue Name"/>
-                    </h1>
-                </div>
-                <group>
+    <!-- Accion -->
+    <record id="action_sport_issue" model="ir.actions.act_window">
+        <field name="name">Sport Issue</field>
+        <field name="res_model">sport.issue</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <!-- <field name="domain">[]</field> -->
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new sport isuue</p>
+        </field>
+    </record>
+    <!-- Vista Lista -->
+    <record id="sport_issue_view_tree" model="ir.ui.view">
+        <field name="name">sport.issue.view.tree</field>
+        <field name="model">sport.issue</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1" string="Issues">
+                <field name="secuence" widget="handle"></field>
+                <field name="name"></field>
+                <field name="date" optional="show"></field>
+                <field name="user_id" optional="hide"></field>
+                <field name="state" widget="badge"></field>
+            </tree>
+        </field>
+    </record>
+    <!-- Vista Form -->
+    <record id="sport_issue_view_form" model="ir.ui.view">
+        <field name="name">sport_issue.view.form</field>
+        <field name="model">sport.issue</field>
+        <field name="arch" type="xml">
+            <form string="Issues">
+                <header>
+                    <field options="{'clickable':1}" name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                    <button string="To draft" invisible="state in ('draft','done')" name="action_draft" type="object" class="oe_highlight"/>
+                    <button string="To open" invisible="state in ('open')" name="action_open" type="object" class="btn-primary"/>
+                    <button string="To done" invisible="state in ('done','draft')" name="action_done" type="object" class="btn-success"/>
+                    <button string="All issues To open" name="action_open_all_issues" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Issue Name"/>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="user_id"></field>
+                        <group>
+                            <field name="user_id"></field>
+                            <field name="clinic_id"></field>
+                        </group>
+                        <group>
+                            <field name="date"></field>
+                            <field name="tag_ids" widget="many2many_tags"></field>
+                            <field name="assistance" widget="boolean_toggle"></field>
+                        </group>
                     </group>
-                    <group>
-                        <field name="date"></field>
-                        <field name="assistance" widget="boolean_toggle"></field>
-                    </group>
-                </group>
-                <notebook>
-                    <page name="description" string="Description">
-                        <field name="description" placeholder="Issue Description"/>
-                    </page>
-                    <page name="solution" string="Solution">
-                        <field name="solution" placeholder="Issue Solution"/>
-                    </page>
-                </notebook>
-            </sheet>
-        </form>
-    </field>
-</record>
+                    <notebook>
+                        <page name="description" string="Description">
+                            <field name="description" placeholder="Issue Description"/>
+                        </page>
+                        <page name="solution" string="Solution">
+                            <field name="solution" placeholder="Issue Solution"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>
