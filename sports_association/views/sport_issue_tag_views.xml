@@ -2,7 +2,7 @@
 <odoo>
     <!-- Accion -->
     <record id="action_sport_issue_tag" model="ir.actions.act_window">
-        <field name="name">Sport Issue Tag</field>
+        <field name="name">Sport Issue Tag Action</field>
         <field name="res_model">sport.issue.tag</field>
         <field name="view_mode">tree,form</field>
         <!-- <field name="domain">[]</field> -->
@@ -16,9 +16,14 @@
         <field name="name">sport.issue.tag.view.tree</field>
         <field name="model">sport.issue.tag</field>
         <field name="arch" type="xml">
-            <tree string="">
+            <tree string="Tags">
                 <field name="name"></field>
             </tree>
+            <!-- Con el argumento editable la lista sería editable directamente
+            , pero no encuentro forma de entrar al form de detalle-->        
+            <!-- <tree editable="bottom" string="Tags">
+                <field name="name"></field>
+            </tree> -->
         </field>
     </record>
     <!-- Vista Form -->

@@ -37,7 +37,13 @@
                         <field name="name"></field>
                         <field name="phone"></field>
                         <field name="email"></field>
-                        <field name="issues_ids"></field>                        
+                        <field name="issues_ids"> 
+                            <tree>
+                                 <field name="name"></field>
+                                 <field name="description"></field>                   
+                                 <field name="assistance" widget="boolean_toggle"></field>
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>
