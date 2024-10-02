@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="sport_menu" 
+    <menuitem id="sport_association_menu" 
         name="Sport Association" 
         sequence="10">
 
@@ -26,7 +26,31 @@
         id="sport_issue_tag_menu" 
         name="Sport Issue Tags" 
         action="sports_association.action_sport_issue_tag" 
-        sequence="40"/>        
+        sequence="40"/>    
 
+        <menuitem
+        id="sport_management_menu"
+        name="Sport Management"
+        sequence="50">
+
+            <menuitem
+            id="sports_menu"    
+            name="Sports"
+            action="sports_association.action_sport"
+            sequence="10"/>
+
+            <menuitem
+            id="sports_teams_menu"    
+            name="Sports teams"
+            action="sports_association.action_sport_team"
+            sequence="20"/>
+
+            <menuitem
+            id="sports_player_menu"    
+            name="Sports players"
+            action="sports_association.action_sport_player"
+            sequence="30"/>                        
+
+        </menuitem>
     </menuitem>  
 </odoo>

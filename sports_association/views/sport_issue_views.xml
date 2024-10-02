@@ -38,6 +38,13 @@
                     <button string="To open" invisible="state in ('open')" name="action_open" type="object" class="btn-primary"/>
                     <button string="To done" invisible="state in ('done','draft')" name="action_done" type="object" class="btn-success"/>
                     <button string="All issues To open" name="action_open_all_issues" type="object" class="oe_highlight"/>
+                    <button string="Create tag 'Test'" name="action_create_tag_test" type="object" class="oe_highlight"/>
+                    <button string="Copy issue" name="action_copy_issue" type="object" class="oe_highlight"/>
+                    <button string="Add tags" name="action_add_tags" type="object" class="oe_highlight"/>
+                    <button string="Add tags Grave Urgente" name="action_add_grave_urgente_tags" type="object" class="oe_highlight"/>
+                    <button string="Add Extrema tag" name="action_add_extrema_tag" type="object" class="oe_highlight"/>
+                    <button string="Add all tags" name="action_add_all_tags" type="object" class="oe_highlight"/>                    
+                    <button string="Remove all tags" name="action_remove_all_tags" type="object" class="oe_highlight"/>                    
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -48,6 +55,9 @@
                     <group>
                         <group>
                             <field name="user_id"></field>
+                            <!-- aquí voy a poner el campo relacional del teléfono del usuario-->
+                            <field name="user_phone" widget="phone"/>
+                            <field name="assigned"></field>
                             <field name="clinic_id"></field>
                             <field name="cost"></field>
                         </group>
