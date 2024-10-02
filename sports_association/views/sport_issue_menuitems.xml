@@ -11,16 +11,22 @@
         sequence="10"/> 
 
         <menuitem 
+        id="sport_license_menu" 
+        name="Sport Licenses" 
+        action="sports_association.action_sport_license" 
+        sequence="20"/> 
+
+        <menuitem 
         id="sport_clinic_menu" 
         name="Sport Clinics" 
         action="sports_association.action_sport_clinic" 
-        sequence="20"/>
+        sequence="30"/>
 
         <menuitem 
         id="sport_issue_tag_menu" 
         name="Sport Issue Tags" 
         action="sports_association.action_sport_issue_tag" 
-        sequence="30"/>        
+        sequence="40"/>        
 
     </menuitem>  
 </odoo>

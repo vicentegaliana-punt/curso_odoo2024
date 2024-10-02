@@ -12,6 +12,7 @@ class SportIssue(models.Model):
         ('open', 'Open'),
         ('done', 'Done'),
     ], string='State', default='draft')
+    color=fields.Integer(string='Color',default=0)
     user_id=fields.Many2one('res.users',string='User')
     secuence = fields.Integer(string='Secuence', default=10)
     solution = fields.Html(string='Solution')
@@ -19,6 +20,9 @@ class SportIssue(models.Model):
     clinic_id=fields.Many2one('sport.clinic',string='Clinic')
     #Ejemplo de Many2many: cada incidencia puede tener varios tags
     tag_ids=fields.Many2many('sport.issue.tag',string='Tags')
+
+    #Ejemplo de campo float, nos vendrá bien para poder medir en la vista pivot
+    cost = fields.Float('cost')
 
 
     def action_open(self):
