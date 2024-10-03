@@ -93,6 +93,7 @@ class SportIssue(models.Model):
     def action_add_grave_urgente_tags(self):
         #Añade las etiquetas Grave y Urgente a la incidencia
         for record in self:
+            import pdb;pdb.set_trace()
             grave_tag=self.env['sport.issue.tag'].search([('name','=','Grave')],limit=1)
             urgente_tag=self.env['sport.issue.tag'].search([('name','=','Urgente')],limit=1)
             record.write({'tag_ids':[(4, grave_tag.id),(4, urgente_tag.id)]})
