@@ -19,6 +19,7 @@
             <tree string="Players">
                 <field name="name"></field>
                 <field name="team_id"></field>
+                <field name="age"></field>
             </tree>
         </field>
     </record>
@@ -28,13 +29,21 @@
         <field name="model">sport.player</field>
         <field name="arch" type="xml">
             <form string="Player">
+               <header>
+                    <button string="Make starter" name="action_make_starter" type="object" class="oe_highlight"/>
+                    <button string="Make substitute" name="action_make_substitute" type="object" class="oe_highlight"/>
+                </header>            
                 <sheet>
                     <group>
                         <field name="name"></field>
                         <field name="birth_date"></field>
                         <field name="age"></field>
-                        <field name="team_id"></field>
                     </group>
+                    <group>
+                        <field name="starter" widget="boolean_toggle"></field>
+                        <field name="team_id"></field>
+                        <field name="sport_id"></field>
+                    </group>                    
                 </sheet>
             </form>
         </field>
