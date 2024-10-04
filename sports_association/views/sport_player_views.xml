@@ -15,6 +15,7 @@
     <record id="sport_player_view_tree" model="ir.ui.view">
         <field name="name">sport.player.view.tree</field>
         <field name="model">sport.player</field>
+        <field name="priority" eval="1"/>
         <field name="arch" type="xml">
             <tree string="Players">
                 <field name="name"></field>
@@ -23,6 +24,19 @@
             </tree>
         </field>
     </record>
+    <!-- Vista Lista SIMPLIFICADA -->
+    <record id="sport_player_view_simple_tree" model="ir.ui.view">
+        <field name="name">sport.player.view.simple.tree</field>
+        <field name="model">sport.player</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <tree string="Players" delete="False">
+                <field name="name"></field>
+                <field name="age"></field>
+                <field name="starter" widget="boolean_toggle"></field>
+            </tree>
+        </field>
+    </record>    
     <!-- Vista Form -->
     <record id="sport_player_view_form" model="ir.ui.view">
         <field name="name">sport.player.view.form</field>
@@ -48,4 +62,18 @@
             </form>
         </field>
     </record>
+    <!-- Vista Form SIMPLIFICADA-->
+    <record id="sport_player_view_simple_form" model="ir.ui.view">
+        <field name="name">sport.player.view.simple.form</field>
+        <field name="model">sport.player</field>
+        <field name="arch" type="xml">
+            <form string="Player">
+                <group>
+                    <field name="name"></field>
+                    <field name="birth_date"></field>
+                    <field name="starter" widget="boolean_toggle"></field>
+                </group>
+            </form>
+        </field>
+    </record>    
 </odoo>

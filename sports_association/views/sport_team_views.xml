@@ -37,10 +37,25 @@
                         <field name="name"></field>
                         <field name="sport_id"></field>
                         <field name="players_count"></field>
-                        <field name="player_ids">
+                        <!-- VISTA EMBEBIDA -->
+                        <!-- <field name="player_ids">
                             <tree string="Players" delete="False">
                                 <field name="name"></field>
                                 <field name="age"></field>
+                                <field name="starter" widget="boolean_toggle"></field>
+                            </tree>
+                        </field>                -->
+                        <!-- VISTA RELACIONADA -->         
+                        <!-- <field name="player_ids" context="{
+                            'tree_view_ref':'sports_association.sport_player_view_simple_tree'
+                            ,'form_view_ref': 'sports_association.sport_player_view_simple_form'
+                            }"/> -->
+                        <!-- VISTA EMBEBIDA EDITABLE -->
+                        <field name="player_ids" context="{'default_starter':True}">
+                            <tree string="Players" editable="bottom">
+                                <field name="name"></field>
+                                <field name="age"></field>
+                                <field name="starter" widget="boolean_toggle"></field>
                             </tree>
                         </field>
                     </group>

@@ -37,7 +37,7 @@
                         <field name="name"></field>
                         <field name="phone"></field>
                         <field name="email"></field>
-                        <field name="issues_ids"> 
+                        <field name="issues_ids" delete='False'> 
                             <tree>
                                  <field name="name"></field>
                                  <field name="description"></field>                   

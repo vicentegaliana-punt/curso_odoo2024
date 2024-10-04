@@ -58,7 +58,7 @@
                             <!-- aquí voy a poner el campo relacional del teléfono del usuario-->
                             <field name="user_phone" widget="phone"/>
                             <field name="assigned"></field>
-                            <field name="clinic_id"></field>
+                            <field name="clinic_id" options="{'no_create':True,'no_open':True}"></field>
                             <field name="cost"></field>
                         </group>
                         <group>
