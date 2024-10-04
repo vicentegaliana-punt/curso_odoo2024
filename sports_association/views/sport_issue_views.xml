@@ -54,16 +54,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="user_id"></field>
+                            <field name="user_id" options="{'no_quick_create':True,'no_open':True}"></field>
                             <!-- aquí voy a poner el campo relacional del teléfono del usuario-->
                             <field name="user_phone" widget="phone"/>
                             <field name="assigned"></field>
-                            <field name="clinic_id" options="{'no_create':True,'no_open':True}"></field>
+                            <field name="clinic_id" options="{'no_create':True,'no_open':True}" domain="[('available','=',True)]"></field>
                             <field name="cost"></field>
                         </group>
                         <group>
                             <field name="date"></field>
-                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"></field>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color','no_create':True}"></field>
                             <!-- <field name="tag_ids" widget="many2many_tags"></field> -->
                             <field name="assistance" widget="boolean_toggle"></field>
                         </group>
@@ -74,6 +74,14 @@
                         </page>
                         <page name="solution" string="Solution">
                             <field name="solution" placeholder="Issue Solution"/>
+                        </page>
+                        <page name="actions" string="Actions">
+                            <field name="action_ids" placeholder="Issue Actions" context="{'default_state':state}">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

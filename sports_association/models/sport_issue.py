@@ -31,6 +31,9 @@ class SportIssue(models.Model):
     #Ejemplo de campo relacional, vamos a almacenar en el campo user_phone el teléfono del usuario
     user_phone=fields.Char(string='User Phone',related='user_id.phone',store=True, readonly=False)
 
+    #Ejemplo de campo one2many, cada incidencia puede tener varias acciones
+    action_ids=fields.One2many('sport.issue.action','issue_id',string='Actions to do')
+
     def _compute_assigned(self):
         for record in self:
             record.assigned=bool(record.user_id)

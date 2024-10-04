@@ -55,7 +55,7 @@
                     </group>
                     <group>
                         <field name="starter" widget="boolean_toggle"></field>
-                        <field name="team_id"></field>
+                        <field name="team_id" domain="[('sport_id','!=',False)]"></field>
                         <field name="sport_id"></field>
                     </group>                    
                 </sheet>

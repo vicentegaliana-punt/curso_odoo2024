@@ -7,6 +7,7 @@ class SportClinic(models.Model):
     name=fields.Char(string='Name',required=True)
     phone=fields.Char(string='Phone')
     email=fields.Char(string='Email')
+    available=fields.Boolean(string='Available')
     #Ejemplo de One2many: cada clínica puede atender varias incidencias
     issues_ids=fields.One2many('sport.issue','clinic_id',string='Issues')
 
