@@ -1,4 +1,6 @@
-from odoo import models, fields, Command
+from odoo import models, fields, Command, api, _
+from odoo.exceptions import ValidationError
+
 class SportIssue(models.Model):
     _name = 'sport.issue'
     _description = 'Sport Issue'
@@ -118,3 +120,18 @@ class SportIssue(models.Model):
         #Quita sin borrar todas las etiquetas de la incidencia
         for record in self:
             record.tag_ids=[Command.clear()]
+
+    #Defino una restricción @api.constrains para evitar que el coste pueda ser negativo
+    @api.constrains('cost')
+    def _check_cost(self):
+        for record in self:
+            if record.cost<0:
+                raise ValidationError(_('Cost must be positive'))    
+            
+    #Defino un método que se ejeuctará cuando cambie el campo clinic_id. Cuando tenga el valor 'Hospital Virgen de la Arrixaca', el campo assistance se pondrá a True
+    @api.onchange('clinic_id')
+    def _onchange_clinic_id(self):
+        for record in self:
+            if record.clinic_id.name=='Hospital Virgen de la Arrixaca':
+                self.assistance=True
+    
