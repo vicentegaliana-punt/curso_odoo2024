@@ -7,6 +7,7 @@ class SportTeam(models.Model):
     sport_id=fields.Many2one('sport',string='Sport')
     player_ids=fields.One2many('sport.player','team_id',string='Players')
     players_count=fields.Integer(string='Players Count',compute='_compute_players_count',store=True)
+    league_id=fields.Many2one('sport.league',string='League')
     
     def action_populate_young_players(self):
         # Buscar jugadores menores de 30 años y que no tengan equipo, y los añade al equipo actual

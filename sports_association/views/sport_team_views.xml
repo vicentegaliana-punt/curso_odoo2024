@@ -36,6 +36,7 @@
                     <group>
                         <field name="name"></field>
                         <field name="sport_id"></field>
+                        <field name="league_id"></field>
                         <field name="players_count"></field>
                         <!-- VISTA EMBEBIDA -->
                         <!-- <field name="player_ids">

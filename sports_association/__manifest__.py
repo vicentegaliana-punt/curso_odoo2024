@@ -14,6 +14,7 @@
     ],
     "data": [
         "data/sport_license_data.xml",
+        "data/ir_cron.xml",
         "security/groups.xml",
         "security/ir.model.access.csv",
         "views/sport_views.xml",
@@ -23,6 +24,10 @@
         "views/sport_issue_tag_views.xml",
         "views/sport_team_views.xml",
         "views/sport_player_views.xml",
+        "views/sport_match_views.xml",
+        "views/sport_league_views.xml",
+
+        # Menus (debe ir al final, después de las vistas, ya que hace referencia a los actions definidos en las vistas)
         "views/sport_issue_menuitems.xml",
     ],
 }
