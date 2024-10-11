@@ -7,7 +7,7 @@ class SportPlayer(models.Model):
     name=fields.Char(string='Name',required=True)
     birth_date=fields.Date(string='Birth Date')
     age=fields.Integer(string='Age',compute='_compute_age',store=True)
-    starter=fields.Boolean(string='Starter')
+    starter=fields.Boolean(string='Starter', default=True)
     team_id=fields.Many2one('sport.team',string='Team')
     sport_id=fields.Char(string='Sport',related='team_id.sport_id.name')
 

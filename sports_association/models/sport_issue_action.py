@@ -10,4 +10,3 @@ class SportIssueAction(models.Model):
         ('open', 'Open'),
         ('done', 'Done'),
     ], string='State')
-    

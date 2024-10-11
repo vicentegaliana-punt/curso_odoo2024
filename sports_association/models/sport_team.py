@@ -21,5 +21,13 @@ class SportTeam(models.Model):
         for record in self:
             record.players_count=len(record.player_ids)
         
-        
+    # smart button para ver la lista de jugadores del equipo
+    def action_view_players(self):    
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Players',
+            'res_model': 'sport.player',
+            'view_mode': 'tree,form',
+            'domain': [('team_id', '=', self.id)],
+        }
     
