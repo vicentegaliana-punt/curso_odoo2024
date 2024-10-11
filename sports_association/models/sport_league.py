@@ -19,6 +19,13 @@ class SportLeague(models.Model):
         for record in self.sport_league_team_ids:
             record.points=self.env['sport.match'].search_count([('sport_id','=',self.sport_id.id),('winner_id','=',record.team_id.id)])
             
+    #Creo el método cron para calcular los puntos de los equipos de la liga
+    def _cron_set_score(self):
+        leagues=self.search([])
+        # Como estamos en la misma clase, no hemos necesitado hacer referencia a self.env, pero lo de abajo funcionaría igual
+        # leagues=self.env['sport.league'].search([])
+        for league in leagues:
+            league.action_set_score()
     
 class SportLeagueTeam(models.Model):
     _name = 'sport.league.team'

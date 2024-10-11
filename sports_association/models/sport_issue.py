@@ -7,7 +7,7 @@ class SportIssue(models.Model):
     
     name=fields.Char(string='Name',required=True)
     description=fields.Text(string='Description')
-    date=fields.Datetime(string='Date')
+    date=fields.Datetime(string='Date', default=fields.Datetime.now)
     assistance=fields.Boolean(string='Assistance',help='Show if the issue is related to assistance')
     state=fields.Selection([
         ('draft', 'Draft'),
@@ -15,12 +15,22 @@ class SportIssue(models.Model):
         ('done', 'Done'),
     ], string='State', default='draft')
     color=fields.Integer(string='Color',default=0)
-    user_id=fields.Many2one('res.users',string='User')
+
+    #función para el valor por defecto de user_id
+    def _default_user_id(self):
+        return self.env.user.id
+
+    #valor por defecto con función normal
+    # user_id=fields.Many2one('res.users',string='User', default=_default_user_id)
+    #valor por defecto con función lambda
+    user_id=fields.Many2one('res.users',string='User', default=lambda self: self.env.user.id)
     secuence = fields.Integer(string='Secuence', default=10)
     solution = fields.Html(string='Solution')
 
     #Ejemplo de campo calculado no almacenado
-    assigned=fields.Boolean(string='Assigned',compute='_compute_assigned',inverse='_inverse_assigned',search='_search_assigned')
+    # quito la asignación inverse='_inverse_assigned' para que me funcione el valor por defecto de función en el campo user_id, ambas cosas se estaban peleando
+    # assigned=fields.Boolean(string='Assigned',compute='_compute_assigned',inverse='_inverse_assigned',search='_search_assigned')
+    assigned=fields.Boolean(string='Assigned',compute='_compute_assigned',search='_search_assigned')
     
     #Ejemplo de Many2one: cada incidencia pertenece a una clínica (una sola)
     clinic_id=fields.Many2one('sport.clinic',string='Clinic')
@@ -35,6 +45,10 @@ class SportIssue(models.Model):
 
     #Ejemplo de campo one2many, cada incidencia puede tener varias acciones
     action_ids=fields.One2many('sport.issue.action','issue_id',string='Actions to do')
+
+    _sql_constraints = [
+	('name','unique (name)','El nombre de la incidencia debe ser único')]
+
 
     def _compute_assigned(self):
         for record in self:
@@ -73,6 +87,9 @@ class SportIssue(models.Model):
         self.write({'state':'open'})
 
     def action_done(self):
+        if(self.date==False):
+            raise ValidationError(_('Date is required'))
+        
         self.write({'state':'done'})
 
     def action_draft(self):
