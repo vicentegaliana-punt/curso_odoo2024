@@ -7,7 +7,7 @@ class SportIssue(models.Model):
     
     name=fields.Char(string='Name',required=True)
     description=fields.Text(string='Description')
-    date=fields.Datetime(string='Date', default=fields.Datetime.now)
+    date=fields.Datetime(string='Date', default=fields.Date.today)
     assistance=fields.Boolean(string='Assistance',help='Show if the issue is related to assistance')
     state=fields.Selection([
         ('draft', 'Draft'),
@@ -47,7 +47,7 @@ class SportIssue(models.Model):
     action_ids=fields.One2many('sport.issue.action','issue_id',string='Actions to do')
 
     _sql_constraints = [
-	('name','unique (name)','El nombre de la incidencia debe ser único')]
+	('name_uniq','unique (name)','El nombre de la incidencia debe ser único')]
 
 
     def _compute_assigned(self):

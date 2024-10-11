@@ -34,7 +34,7 @@
                 </header>               
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                		<button name="action_view_players" string="Players" type="object" class="oe_stat_button" icon="fa-address-card">
+                		<button name="action_view_players" string="Players" type="object" class="oe_stat_button" icon="fa-users">
                             <field string="Players" name="players_count" widget="statinfo"></field>
                         </button>
                     </div>
