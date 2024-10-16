@@ -8,6 +8,10 @@ class SportClinic(models.Model):
     phone=fields.Char(string='Phone')
     email=fields.Char(string='Email')
     available=fields.Boolean(string='Available')
+
+    #Ejemplo de campo reservado company_id
+    # company_id=fields.Many2one('res.company',string='Company')
+    
     #Ejemplo de One2many: cada clínica puede atender varias incidencias
     issues_ids=fields.One2many('sport.issue','clinic_id',string='Issues')
     #Campo calculado que nos devolverá el número de incidencias que tiene la clínica
