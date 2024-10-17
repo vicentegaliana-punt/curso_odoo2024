@@ -46,7 +46,10 @@
                <header>
                     <button string="Make starter" name="action_make_starter" type="object" class="oe_highlight"/>
                     <button string="Make substitute" name="action_make_substitute" type="object" class="oe_highlight"/>
-                </header>            
+                    <!-- el context de abajo realmente no hace falta tal y como tengo yo el código, pero si tuviera 
+                    un solo wizard para crear las incidencias tanto desde clínica como desde jugador, sí me sería muy útil-->
+                    <button name="%(action_sport_player_create_issue)d" context="{'default_player_id': id, 'hola':True}" string="Create Issue" type="action" class="oe_highlight"></button>
+                </header>    
                 <sheet>
                     <group>
                         <field name="name"></field>

@@ -23,6 +23,7 @@
                 <field name="user_id" optional="hide"></field>
                 <field name="state" widget="badge"></field>
                 <field name="cost" optional="show"></field>
+                <field name="player_id" optional="show"></field>
             </tree>
         </field>
     </record>
@@ -41,7 +42,7 @@
                     <button string="Create tag 'Test'" name="action_create_tag_test" type="object" class="oe_highlight"/>
                     <button string="Copy issue" name="action_copy_issue" type="object" class="oe_highlight"/>
                     <button string="Add tags" name="action_add_tags" type="object" class="oe_highlight"/>
-                    <button string="Add tags Grave Urgente" name="action_add_grave_urgente_tags" type="object" class="oe_highlight"/>
+                    <button string="Add tags Grave Urgente" groups="sports_association.res_groups_sports_association_manager" name="action_add_grave_urgente_tags" type="object" class="oe_highlight"/>
                     <button string="Add Extrema tag" name="action_add_extrema_tag" type="object" class="oe_highlight"/>
                     <button string="Add all tags" name="action_add_all_tags" type="object" class="oe_highlight"/>                    
                     <button string="Remove all tags" name="action_remove_all_tags" groups="sports_association.res_groups_sports_association_manager" type="object" class="oe_highlight"/>                    
@@ -66,6 +67,7 @@
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color','no_create':True}"></field>
                             <!-- <field name="tag_ids" widget="many2many_tags"></field> -->
                             <field name="assistance" widget="boolean_toggle"></field>
+                            <field name="player_id"></field>
                         </group>
                     </group>
                     <notebook>

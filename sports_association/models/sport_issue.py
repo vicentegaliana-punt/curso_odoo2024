@@ -6,6 +6,11 @@ class SportIssue(models.Model):
     _description = 'Sport Issue'
     
     name=fields.Char(string='Name',required=True)
+
+    # Añado el campo active. Por el hecho de tener este campo, automáticamente 
+    # Odoo aportará funcionalidad para poder archivar / desarchivar incidencias
+    active=fields.Boolean(string='Active',default=True,help='If unchecked, allow you to hide the issue without removing it')
+
     description=fields.Text(string='Description')
     date=fields.Datetime(string='Date', default=fields.Date.today)
     assistance=fields.Boolean(string='Assistance',help='Show if the issue is related to assistance')
@@ -24,8 +29,10 @@ class SportIssue(models.Model):
     # user_id=fields.Many2one('res.users',string='User', default=_default_user_id)
     #valor por defecto con función lambda
     user_id=fields.Many2one('res.users',string='User', default=lambda self: self.env.user.id)
+    
     secuence = fields.Integer(string='Secuence', default=10)
     solution = fields.Html(string='Solution')
+    player_id = fields.Many2one('sport.player', string='player')
 
     #Ejemplo de campo calculado no almacenado
     # quito la asignación inverse='_inverse_assigned' para que me funcione el valor por defecto de función en el campo user_id, ambas cosas se estaban peleando
@@ -84,16 +91,18 @@ class SportIssue(models.Model):
             
         # Pero ésto tampoco sería lo ideal, es incluso mejor hacer uso de la función write
         # que es más eficiente y rápida
-        self.write({'state':'open'})
+        for record in self:
+            record.write({'state':'open'})
 
     def action_done(self):
-        if(self.date==False):
-            raise ValidationError(_('Date is required'))
-        
-        self.write({'state':'done'})
+        for record in self:
+            if(record.date==False):
+                raise ValidationError(_('Date is required'))
+            record.write({'state':'done'})
 
     def action_draft(self):
-        self.write({'state':'draft'})
+        for record in self:
+            record.write({'state':'draft'})
 
     def action_open_all_issues(self):
         issues=self.env['sport.issue'].search([])

@@ -4,9 +4,14 @@ class SportPlayer(models.Model):
     _name = 'sport.player'
     _description = 'Sport Player'
     
-    name=fields.Char(string='Name',required=True)
-    birth_date=fields.Date(string='Birth Date')
-    age=fields.Integer(string='Age',compute='_compute_age',store=True)
+    name=fields.Char(string='Name',copy=False)
+
+    # Añado el campo active. Por el hecho de tener este campo, automáticamente 
+    # Odoo aportará funcionalidad para poder archivar / desarchivar jugadores
+    active=fields.Boolean(string='Active',default=True,help='If unchecked, allow you to hide the player without removing it')
+
+    birth_date=fields.Date(string='Birth Date',copy=False)
+    age=fields.Integer(string='Age',compute='_compute_age',store=True,copy=False)
     starter=fields.Boolean(string='Starter', default=True)
     team_id=fields.Many2one('sport.team',string='Team')
     sport_id=fields.Char(string='Sport',related='team_id.sport_id.name')

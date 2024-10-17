@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard -->
+    <record id="view_sport_issues_to_done" model="ir.ui.view">
+        <field name="name">sport.issues.to.done</field>
+        <field name="model">sport.issues.to.done</field>
+        <field name="arch" type="xml">
+            <form string="Issues to Done">
+                <!-- <group>
+                    <field name="issue_ids"></field>
+                </group> -->
+                <footer>
+                    <button name="issues_to_done" string="Issues to Done" type="object" class="btn-primary"></button>
+                    <button string="Cancel" class="btn-secondary" special="cancel"></button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_sport_issues_to_done" model="ir.actions.act_window">
+        <field name="name">Issues to Done</field>
+        <field name="res_model">sport.issues.to.done</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sports_association.model_sport_issue"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

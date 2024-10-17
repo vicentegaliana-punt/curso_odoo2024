@@ -27,6 +27,8 @@
         "views/sport_match_views.xml",
         "views/sport_league_views.xml",
         "wizards/sport_create_issue.xml",
+        "wizards/sport_issues_to_done.xml",
+        "wizards/sport_player_create_issue.xml",
 
         # Menus (debe ir al final, después de las vistas, ya que hace referencia a los actions definidos en las vistas)
         "views/sport_issue_menuitems.xml",
