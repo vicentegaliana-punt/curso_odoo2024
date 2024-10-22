@@ -10,7 +10,7 @@
     "application": False,
     "installable": True,
     "depends": [
-        "base",
+        "base", "web",
     ],
     "data": [
         "data/sport_license_data.xml",
@@ -32,5 +32,8 @@
 
         # Menus (debe ir al final, después de las vistas, ya que hace referencia a los actions definidos en las vistas)
         "views/sport_issue_menuitems.xml",
+
+        # Reports
+        "report/sport_issue_report.xml",
     ],
 }

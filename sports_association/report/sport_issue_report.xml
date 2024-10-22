@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- UNA INCIDENCIA POR PÁGINA-->
+    <!-- <template id="report_sport_issue">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Report title</h2>
+                        <p>This object's name is <span t-field="o.name"/></p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template> -->
+    <!-- LISTA DE INCIDENCIAS-->
+    <template id="report_sport_issue">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                <h2>LISTA DE INCIDENCIAS</h2>
+                    <t t-foreach="docs" t-as="o">
+                        <p>This object's name is <span t-field="o.name"/></p>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+    <record id="action_report_sport_issue" model="ir.actions.report">
+        <field name="name">Sport Issue</field>
+        <field name="model">sport.issue</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sports_association.report_sport_issue</field>
+        <field name="report_file">sports_association.report_sport_issue</field>
+        <field name="print_report_name">(object.name)</field>
+        <field name="binding_model_id" ref="model_sport_issue"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
