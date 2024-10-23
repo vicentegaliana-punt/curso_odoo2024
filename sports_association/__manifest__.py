@@ -34,6 +34,8 @@
         "views/sport_issue_menuitems.xml",
 
         # Reports
+        "report/paper_formats.xml",
         "report/sport_issue_report.xml",
+        "report/sport_league_report.xml",
     ],
 }
