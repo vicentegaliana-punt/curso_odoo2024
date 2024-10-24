@@ -10,7 +10,7 @@
     "application": False,
     "installable": True,
     "depends": [
-        "base", "web",
+        "sports_association","sale_management",
     ],
     "data": [
 
