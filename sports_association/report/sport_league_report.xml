@@ -12,11 +12,14 @@
                         </h2>
                         <div class="row mt-4 mb-2" id="informations">
                             <div class="col-auto col-3 mw-100 mb-2" name="start_date">
-                                <strong>Start Date: </strong><br/>
-                                <span class="m-0" t-field="o.start_date"/>
+                                <strong>Start Date: </strong>
+                                <br/>
+                                <!-- <span class="m-0" t-field="o.start_date"/> -->
+                                <span class="m-0" t-out="o.get_start_date()"/>
                             </div>
                             <div class="col-auto col-3 mw-100 mb-2" name="end_date">
-                                <strong>End Date: </strong><br/>
+                                <strong>End Date: </strong>
+                                <br/>
                                 <span class="m-0" t-field="o.end_date"/>
                             </div>
                         </div>
@@ -30,8 +33,12 @@
                             <tbody class="sale_tbody">
                                 <t t-foreach="o.sport_league_team_ids" t-as="team">
                                     <tr>
-                                        <td name="td_name" class="text-start"><span t-field="team.team_id"/></td>
-                                        <td name="td_points" class="text-start"><span t-field="team.points"/></td>
+                                        <td name="td_name" class="text-start">
+                                            <span t-field="team.team_id"/>
+                                        </td>
+                                        <td name="td_points" class="text-start">
+                                            <span t-field="team.points"/>
+                                        </td>
                                     </tr>
                                 </t>
                             </tbody>
@@ -39,11 +46,9 @@
                     </div>
                 </t>
             </t>
+
         </t>
     </template>
-
-   
-
     <!-- Action para report_sport_league -->
     <record id="action_report_sport_league" model="ir.actions.report">
         <field name="name">Sport League</field>

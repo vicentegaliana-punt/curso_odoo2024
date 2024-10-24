@@ -34,6 +34,11 @@
                     <button string="Set Score" name="action_set_score" type="object" class="oe_highlight"/>
                 </header>  
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_matches" string="Matches" type="object" class="oe_stat_button" icon="fa-trophy">
+                            <field name="matches_count" string="Matches" widget="statinfo"/>
+                        </button>
+                    </div>
                     <group>
                         <field name="name"></field>
                         <field name="start_date"></field>

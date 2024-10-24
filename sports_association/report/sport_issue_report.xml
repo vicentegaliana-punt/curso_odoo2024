@@ -24,6 +24,7 @@
                             <tr>
                                 <th name="th_name" class="text-start">Name</th>
                                 <th name="th_date" class="text-start">Date</th>
+                                <th name="th_date" class="text-start">User</th>
                             </tr>
                         </thead>
                         <tbody class="sale_tbody">
@@ -31,6 +32,7 @@
                                 <tr>
                                     <td name="td_name" class="text-start"><span t-field="o.name"/></td>
                                     <td name="td_date" class="text-start"><span t-field="o.date"/></td>
+                                    <td name="td_user" class="text-start"><span t-field="o.user_id"/></td>
                                 </tr>
                             </t>
                         </tbody>                    
@@ -63,7 +65,8 @@
                                 <span class="m-0" t-field="o.date"/>
                             </div>                                                        
                         </div>
-                        <table class="table table-sm o_main_table table-borderless mt4">
+                        <!-- puedo externalizar esta tabla en un template aparte, y llamarla con un t-call-->
+                        <!-- <table class="table table-sm o_main_table table-borderless mt4">
                             <thead style="display: table-row-group">
                                 <tr>
                                     <th name="th_action" class="text-start">Name</th>
@@ -78,7 +81,8 @@
                                     </tr>
                                 </t>
                             </tbody>
-                        </table>
+                        </table> -->
+                        <t t-call="sports_association.report_sport_issue_actions"/>
                     </div>
                 </t>
             </t>
