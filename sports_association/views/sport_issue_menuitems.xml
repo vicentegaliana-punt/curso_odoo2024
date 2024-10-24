@@ -61,7 +61,13 @@
             id="sports_league_menu"
             name="Sports leagues"
             action="sports_association.action_sport_league"
-            sequence="50"/>             
+            sequence="50"/>    
+
+            <menuitem
+            id="sports_ticket_menu"
+            name="Sports tickets"
+            action="sports_association.action_sport_ticket"
+            sequence="60"/>
 
         </menuitem>
     </menuitem>  

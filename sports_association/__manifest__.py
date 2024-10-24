@@ -26,6 +26,7 @@
         "views/sport_player_views.xml",
         "views/sport_match_views.xml",
         "views/sport_league_views.xml",
+        "views/sport_ticket_views.xml",
         "wizards/sport_create_issue.xml",
         "wizards/sport_issues_to_done.xml",
         "wizards/sport_player_create_issue.xml",
