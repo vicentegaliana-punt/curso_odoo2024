@@ -13,6 +13,6 @@
         "sports_association","sale_management",
     ],
     "data": [
-
+        "views/sport_ticket_views.xml",
     ],
 }
