@@ -52,9 +52,14 @@
                 </header>    
                 <sheet>
                     <group>
+                        <field name="partner_id"></field>
                         <field name="name"></field>
                         <field name="birth_date"></field>
                         <field name="age"></field>
+                        <field name="street"></field>
+                        <field name="city"></field>
+                        <field name="country_id"></field>
+                        <field name="zip"></field>
                     </group>
                     <group>
                         <field name="starter" widget="boolean_toggle"></field>

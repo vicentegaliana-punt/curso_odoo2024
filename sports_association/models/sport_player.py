@@ -3,8 +3,12 @@ from datetime import date
 class SportPlayer(models.Model):
     _name = 'sport.player'
     _description = 'Sport Player'
+    _inherits = {'res.partner':'partner_id'}
     
-    name=fields.Char(string='Name',copy=False)
+    # partner_id = fields.Many2one('res.partner', string='Partner', required=True, ondelete='cascade')
+    partner_id = fields.Many2one('res.partner', string='Partner', required=True, ondelete='restrict')
+    # name=fields.Char(string='Name',copy=False)
+    name=fields.Char(related='partner_id.name',inherited=True,readonly=False)
 
     # Añado el campo active. Por el hecho de tener este campo, automáticamente 
     # Odoo aportará funcionalidad para poder archivar / desarchivar jugadores
