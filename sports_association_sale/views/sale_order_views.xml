@@ -5,7 +5,9 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
-            <page name="customer_signature" position="after">
+            <!-- para añadir mi pestaña dentro del nodo notebook, usando xpath 
+            (es con propósitos académicos, la forma de abajo en realidad sería mejor)-->
+            <xpath expr="//notebook" position="inside">
                 <page string="Sports Tickets">
                     <field name="sport_ticket_ids" widget="one2many_list">
                         <tree string="Sport Tickets">
@@ -15,7 +17,19 @@
                         </tree>
                     </field>
                 </page>                
-            </page>
+            </xpath>
+            <!-- para añadir mi pestaña después de la pestaña customer_signature (funciona perfectamente)-->
+            <!-- <page name="customer_signature" position="after">
+                <page string="Sports Tickets">
+                    <field name="sport_ticket_ids" widget="one2many_list">
+                        <tree string="Sport Tickets">
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="match_id"/>
+                        </tree>
+                    </field>
+                </page>                
+            </page> -->
             <button name="action_cancel" position="before">
                 <button name="create_sport_ticket" string="Create Sport Ticket" type="object"/>
             </button>
