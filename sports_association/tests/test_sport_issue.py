@@ -59,3 +59,10 @@ class TestSportIssue(common.TransactionCase):
         # Compruebo que el estado de la incidencia es 'draft' al ejecutar el método action_draft
         self.issue.action_draft()
         self.assertEqual(self.issue.state, 'draft')
+        # Compruebo que se lanza una excepción al intentar cambiar el estado de la incidencia a 'done' sin fecha
+        self.issue.date=False
+        # se puede hacer de dos formas:
+        # self.assertRaises(models.ValidationError, self.issue.action_done)
+        # o bien:
+        with self.assertRaises(models.ValidationError):
+            self.issue.action_done()
