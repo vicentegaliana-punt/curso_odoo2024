@@ -19,7 +19,7 @@ class SportIssue(models.Model):
         ('draft', 'Draft'),
         ('open', 'Open'),
         ('done', 'Done'),
-    ], string='State', default='draft')
+    ], string='State', default='draft', tracking=True)
     color=fields.Integer(string='Color',default=0)
 
     #función para el valor por defecto de user_id
@@ -31,14 +31,14 @@ class SportIssue(models.Model):
     #valor por defecto con función lambda
     user_id=fields.Many2one('res.users',string='User', default=lambda self: self.env.user.id)
     
+    
     secuence = fields.Integer(string='Secuence', default=10)
     solution = fields.Html(string='Solution')
     player_id = fields.Many2one('sport.player', string='player')
 
     #Ejemplo de campo calculado no almacenado
-    # quito la asignación inverse='_inverse_assigned' para que me funcione el valor por defecto de función en el campo user_id, ambas cosas se estaban peleando
-    # assigned=fields.Boolean(string='Assigned',compute='_compute_assigned',inverse='_inverse_assigned',search='_search_assigned')
-    assigned=fields.Boolean(string='Assigned',compute='_compute_assigned',search='_search_assigned')
+    assigned=fields.Boolean(string='Assigned',compute='_compute_assigned',inverse='_inverse_assigned',search='_search_assigned')
+
     
     #Ejemplo de Many2one: cada incidencia pertenece a una clínica (una sola)
     clinic_id=fields.Many2one('sport.clinic',string='Clinic')
