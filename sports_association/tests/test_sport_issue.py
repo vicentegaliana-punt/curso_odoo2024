@@ -16,9 +16,9 @@ class TestSportIssue(common.TransactionCase):
         cls.issue = cls.env['sport.issue'].create({
             'name': 'Issue 1',
         })
-        # cls.issue2 = cls.env['sport.issue'].create({
-        #     'name': 'Issue 2',
-        # })
+        cls.issue2 = cls.env['sport.issue'].create({
+            'name': 'Issue 2',
+        })
 
     # El método que comprueba los dos casos, solo me funciona bien si uso una incedencia diferente para cada caso
     # def test_compute_assigned(self):
@@ -66,3 +66,61 @@ class TestSportIssue(common.TransactionCase):
         # o bien:
         with self.assertRaises(models.ValidationError):
             self.issue.action_done()
+
+    def test_action_open_all_issues(self):
+        self.issue.state='draft'
+        self.issue2.state='draft'
+        # Compruebo que el estado de todas las incidencias es 'open' al ejecutar el método action_open_all_issues sobre cualquiera de ellas
+        self.issue.action_open_all_issues()
+        self.assertEqual(self.issue.state, 'open')
+        self.assertEqual(self.issue2.state, 'open')
+
+    def test_action_create_tag_test(self):
+        # Compruebo que se crea una etiqueta al ejecutar el método action_create_tag_test
+        self.issue.action_create_tag_test()
+        self.assertTrue(self.env['sport.issue.tag'].search([('name', '=', 'Test Tag')]))
+
+
+    def test_action_copy_issue(self):
+        # Compruebo que se crea una copia de la incidencia al ejecutar el método action_copy_issue
+        self.issue.action_copy_issue()
+        self.assertTrue(self.env['sport.issue'].search([('name', '=', 'Copia de Issue 1'), ('state', '=', 'draft')]))
+
+    def test_action_add_tags(self):
+        # Compruebo que se añaden dos etiquetas a la incidencia al ejecutar el método action_add_tags
+        self.issue.action_add_tags()
+        self.assertTrue(self.issue.tag_ids.filtered(lambda r: r.name == 'New Tag 1'))
+        self.assertTrue(self.issue.tag_ids.filtered(lambda r: r.name == 'New Tag 2'))
+    
+    def test_action_add_grave_urgente_tags(self):
+        # Compruebo que se añaden las etiquetas Grave y Urgente a la incidencia al ejecutar el método action_add_grave_urgente_tags
+        self.issue.action_add_grave_urgente_tags()
+        self.assertTrue(self.issue.tag_ids.filtered(lambda r: r.name == 'Grave'))
+        self.assertTrue(self.issue.tag_ids.filtered(lambda r: r.name == 'Urgente'))
+
+    def test_action_add_extrema_tag(self):
+        # Compruebo que se añade la etiqueta Extrema a la incidencia al ejecutar el método action_add_extrema_tag
+        self.issue.action_add_extrema_tag()
+        self.assertTrue(self.issue.tag_ids.filtered(lambda r: r.name == 'Extrema'))
+
+    def test_action_add_all_tags(self):
+        # Compruebo que se añaden todas las etiquetas a la incidencia al ejecutar el método action_add_all_tags
+        self.issue.action_add_all_tags()
+        self.assertEqual(len(self.issue.tag_ids), len(self.env['sport.issue.tag'].search([])))
+    
+    def test_action_remove_all_tags(self):
+        # Compruebo que se eliminan todas las etiquetas de la incidencia al ejecutar el método action_remove_all_tags
+        self.issue.action_remove_all_tags()
+        self.assertFalse(self.issue.tag_ids)
+
+    def test_check_cost(self):
+        # Compruebo que se lanza una excepción al intentar asignar un coste negativo
+        with self.assertRaises(models.ValidationError):
+            self.issue.cost=-1
+    
+    #Este test no funciona porque @api.onchange solo funciona para cambios realizados en la interfaz, no para cambios realizados en el código
+    # def test_onchange_clinic_id(self):
+    #     # Compruebo que si se asigna a la incidencia la clínica 'Hospital Virgen de la Arrixaca', el campo assistance se pone a True
+    #     clinicArrixaca=self.env['sport.clinic'].search([('name', '=', 'Hospital Virgen de la Arrixaca')])
+    #     self.issue.clinic_id=clinicArrixaca
+    #     self.assertTrue(self.issue.assistance)

@@ -100,6 +100,11 @@ class SportIssue(models.Model):
             if(record.date==False):
                 raise ValidationError(_('Date is required'))
             record.write({'state':'done'})
+            # Envío un mensaje personalizado al cambiar el estado de la incidencia a las actividades relacionadas
+            # Usamos argumentos posicionales para poder pasar los valores de record.state y record.date. 
+            # NO usar f-strings, ya que se pelean con la traducción (los f-string se pueden usar sin problema, siempre y cundo no haya traducción)
+            msgBody=_('Issue changed its state to %s on %s'%(record.state,record.date))
+            record.message_post(body=msgBody)
 
     def action_draft(self):
         for record in self:

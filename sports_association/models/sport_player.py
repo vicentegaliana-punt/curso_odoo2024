@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from datetime import date
 class SportPlayer(models.Model):
     _name = 'sport.player'
@@ -39,3 +39,11 @@ class SportPlayer(models.Model):
 
     def action_make_substitute(self):
         self.starter=False
+
+    def copy(self,default=None):
+        self.ensure_one()
+        default = dict(default or {})
+        import pdb; pdb.set_trace()
+        if('name' not in default) and ('partner_id' not in default):
+            default['name'] = _('%s (copy)',self.name)
+        return super().copy(default)
