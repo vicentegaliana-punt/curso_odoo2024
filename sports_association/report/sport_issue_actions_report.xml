@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sport_issue_actions">
+        <t t-call="web.html_container">
+            <!-- aquí debo quitar la llamada a web.external_layout, porque si no, me vuelve a poner el encabezado y el pié-->
+            <!-- <t t-call="web.external_layout"> -->
+            <div class="page">
+                <table class="table table-sm o_main_table table-borderless mt4">
+                    <thead style="display: table-row-group">
+                        <tr>
+                            <th name="th_action" class="text-start">Name</th>
+                            <th name="th_state" class="text-end">State</th>
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+                        <t t-foreach="o.action_ids" t-as="a">
+                            <tr>
+                                <td name="td_name" class="text-start">
+                                    <span t-field="a.name"/>
+                                </td>
+                                <td name="td_state" class="text-end">
+                                    <span t-field="a.state"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

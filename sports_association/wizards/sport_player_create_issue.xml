@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Wizard -->
+    <record id="view_sport_player_create_issue" model="ir.ui.view">
+        <field name="name">sport.player.create.issue</field>
+        <field name="model">sport.player.create.issue</field>
+        <field name="arch" type="xml">
+            <form string="Create Issue">
+                <group>
+                    <field name="name"></field>
+                    <field name="player_id"></field>
+                </group>
+                <footer>
+                    <button name="action_player_create_issue" string="Create Issue" type="object" class="btn-primary"></button>
+                    <button string="Cancel" class="btn-secondary" special="cancel"></button>
+                </footer>
+            </form>
+        </field>
+    </record>
+ 
+    <!-- Action -->
+    <record id="action_sport_player_create_issue" model="ir.actions.act_window">
+        <field name="name">Create Issue</field>
+        <field name="res_model">sport.player.create.issue</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sports_association.model_sport_player"/>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+</odoo>

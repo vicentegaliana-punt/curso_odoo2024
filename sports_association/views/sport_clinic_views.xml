@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Accion -->
+    <record id="action_sport_clinic" model="ir.actions.act_window">
+        <field name="name">Sport Clinic</field>
+        <field name="res_model">sport.clinic</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[]</field> -->
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new sport clinic</p>
+        </field>
+    </record>   
+    <!-- Vista Lista --> 
+    <record id="sport_clinic_view_tree" model="ir.ui.view">
+        <field name="name">sport.clinic.view.tree</field>
+        <field name="model">sport.clinic</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"></field>
+                <field name="phone"></field>
+                <field name="email"></field>
+                <field name="available" widget="boolean_toggle"></field>
+            </tree>
+        </field>
+    </record>
+    <!-- Vista Form -->
+    <record id="sport_clinic_view_form" model="ir.ui.view">
+        <field name="name">sport.clinic.view.form</field>
+        <field name="model">sport.clinic</field>
+        <field name="arch" type="xml">
+            <form string="Clinic">
+                <header>
+                    <button name="action_check_assistance" string="Check Assistance" type="object" class="oe_highlight"></button>
+                    <!-- el context de abajo realmente no hace falta tal y como tengo yo el código, pero si tuviera 
+                    un solo wizard para crear las incidencias tanto desde clínica como desde jugador, sí me sería muy útil-->
+                    <button name="%(action_sport_create_issue)d" context="{'default_clinic_id': id}" string="Create Issue" type="action" class="oe_highlight"></button>
+                </header>
+                <sheet>
+                    <!-- smartbutton for action_open_issues_related -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_issues_related" context="{'default_clinic_id':id,'search_default_draft':True}" string="Issues" type="object" class="oe_stat_button" icon="fa-solid fa-stethoscope">
+                            <field string="Issues" name="issues_count" widget="statinfo"></field>
+                        </button>                 
+                    </div>
+                    <group>
+                        <field name="name"></field>
+                        <field name="phone"></field>
+                        <field name="email"></field>
+                        <field name="available" widget="boolean_toggle"></field>
+                        <!-- <field name="company_id"></field> -->
+                        <field name="issues_ids" delete='False'> 
+                            <tree>
+                                 <field name="name"></field>
+                                 <field name="description"></field>                   
+                                 <field name="assistance" widget="boolean_toggle"></field>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

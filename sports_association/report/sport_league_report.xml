@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- template for sport league, with: name, start date, end date, and table whith league teams and their points-->
+    <template id="report_sport_league">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="mt4">
+                            <span>League: </span>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <div class="row mt-4 mb-2" id="informations">
+                            <div class="col-auto col-3 mw-100 mb-2" name="start_date">
+                                <strong>Start Date: </strong>
+                                <br/>
+                                <!-- <span class="m-0" t-field="o.start_date"/> -->
+                                <span class="m-0" t-out="o.get_start_date()"/>
+                            </div>
+                            <div class="col-auto col-3 mw-100 mb-2" name="end_date">
+                                <strong>End Date: </strong>
+                                <br/>
+                                <span class="m-0" t-field="o.end_date"/>
+                            </div>
+                        </div>
+                        <table class="table table-sm o_main_table table-borderless mt4">
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th name="th_name" class="text-start">Team</th>
+                                    <th name="th_points" class="text-start">Points</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="o.sport_league_team_ids" t-as="team">
+                                    <tr>
+                                        <td name="td_name" class="text-start">
+                                            <span t-field="team.team_id"/>
+                                        </td>
+                                        <td name="td_points" class="text-start">
+                                            <span t-field="team.points"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+
+        </t>
+    </template>
+    <!-- Action para report_sport_league -->
+    <record id="action_report_sport_league" model="ir.actions.report">
+        <field name="name">Sport League</field>
+        <field name="model">sport.league</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">sports_association.report_sport_league</field>
+        <field name="report_file">sports_association.report_sport_league</field>
+        <field name="print_report_name">(object.name)</field>
+        <field name="binding_model_id" ref="model_sport_league"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="sports_association.paperformat_sport_league"/>
+    </record>
+</odoo>

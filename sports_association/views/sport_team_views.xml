@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Accion -->
+    <record id="action_sport_team" model="ir.actions.act_window">
+        <field name="name">Sport Teams</field>
+        <field name="res_model">sport.team</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[]</field> -->
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new sport team</p>
+        </field>
+    </record>
+    <!-- Vista Lista -->
+    <record id="sport_team_view_tree" model="ir.ui.view">
+        <field name="name">sport.team.view.tree</field>
+        <field name="model">sport.team</field>
+        <field name="arch" type="xml">
+            <tree string="Teams">
+                <field name="name"></field>
+                <field name="sport_id"></field>
+                <field name="player_ids"></field>
+            </tree>
+        </field>
+    </record>
+    <!-- Vista Form -->
+    <record id="sport_team_view_form" model="ir.ui.view">
+        <field name="name">sport.team.view.form</field>
+        <field name="model">sport.team</field>
+        <field name="arch" type="xml">
+            <form string="Team">
+               <header>
+                    <button string="Populate young players" name="action_populate_young_players" type="object" class="oe_highlight"></button>
+                </header>               
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                		<button name="action_view_players" string="Players" type="object" class="oe_stat_button" icon="fa-users">
+                            <field string="Players" name="players_count" widget="statinfo"></field>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="name"></field>
+                        <field name="sport_id"></field>
+                        <field name="league_id"></field>
+                        <field name="players_count"></field>
+                        <!-- VISTA EMBEBIDA -->
+                        <!-- <field name="player_ids">
+                            <tree string="Players" delete="False">
+                                <field name="name"></field>
+                                <field name="age"></field>
+                                <field name="starter" widget="boolean_toggle"></field>
+                            </tree>
+                        </field>                -->
+                        <!-- VISTA RELACIONADA -->         
+                        <!-- <field name="player_ids" context="{
+                            'tree_view_ref':'sports_association.sport_player_view_simple_tree'
+                            ,'form_view_ref': 'sports_association.sport_player_view_simple_form'
+                            }"/> -->
+                        <!-- VISTA EMBEBIDA EDITABLE -->
+                        <field name="player_ids" context="{'default_starter':True}">
+                            <tree string="Players" editable="bottom">
+                                <field name="name"></field>
+                                <field name="age"></field>
+                                <field name="starter" widget="boolean_toggle"></field>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

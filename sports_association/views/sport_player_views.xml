@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Accion -->
+    <record id="action_sport_player" model="ir.actions.act_window">
+        <field name="name">Sport Players</field>
+        <field name="res_model">sport.player</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[]</field> -->
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a new sport player</p>
+        </field>
+    </record>
+    <!-- Vista Lista -->
+    <record id="sport_player_view_tree" model="ir.ui.view">
+        <field name="name">sport.player.view.tree</field>
+        <field name="model">sport.player</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Players">
+                <field name="name"></field>
+                <field name="team_id"></field>
+                <field name="age"></field>
+            </tree>
+        </field>
+    </record>
+    <!-- Vista Lista SIMPLIFICADA -->
+    <record id="sport_player_view_simple_tree" model="ir.ui.view">
+        <field name="name">sport.player.view.simple.tree</field>
+        <field name="model">sport.player</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <tree string="Players" delete="False">
+                <field name="name"></field>
+                <field name="age"></field>
+                <field name="starter" widget="boolean_toggle"></field>
+            </tree>
+        </field>
+    </record>    
+    <!-- Vista Form -->
+    <record id="sport_player_view_form" model="ir.ui.view">
+        <field name="name">sport.player.view.form</field>
+        <field name="model">sport.player</field>
+        <field name="arch" type="xml">
+            <form string="Player">
+               <header>
+                    <button string="Make starter" name="action_make_starter" type="object" class="oe_highlight"/>
+                    <button string="Make substitute" name="action_make_substitute" type="object" class="oe_highlight"/>
+                    <!-- el context de abajo realmente no hace falta tal y como tengo yo el código, pero si tuviera 
+                    un solo wizard para crear las incidencias tanto desde clínica como desde jugador, sí me sería muy útil-->
+                    <button name="%(action_sport_player_create_issue)d" context="{'default_player_id': id, 'hola':True}" string="Create Issue" type="action" class="oe_highlight"></button>
+                </header>    
+                <sheet>
+                    <group>
+                        <field name="partner_id"></field>
+                        <field name="name"></field>
+                        <field name="birth_date"></field>
+                        <field name="age"></field>
+                        <field name="street"></field>
+                        <field name="city"></field>
+                        <field name="country_id"></field>
+                        <field name="zip"></field>
+                    </group>
+                    <group>
+                        <field name="starter" widget="boolean_toggle"></field>
+                        <field name="team_id" domain="[('sport_id','!=',False)]"></field>
+                        <field name="sport_id"></field>
+                    </group>                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Vista Form SIMPLIFICADA-->
+    <record id="sport_player_view_simple_form" model="ir.ui.view">
+        <field name="name">sport.player.view.simple.form</field>
+        <field name="model">sport.player</field>
+        <field name="arch" type="xml">
+            <form string="Player">
+                <group>
+                    <field name="name"></field>
+                    <field name="birth_date"></field>
+                    <field name="starter" widget="boolean_toggle"></field>
+                </group>
+            </form>
+        </field>
+    </record>    
+</odoo>

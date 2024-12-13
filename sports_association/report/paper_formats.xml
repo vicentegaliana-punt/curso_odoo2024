@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- con el tag data noupdate="1" lo que consigo es que lo que está dentro del tag no se actualiza aunque
+     yo actualice el módulo. Es decir, puedo hacer cambios a través de la interfaz de odoo (formato de papel), 
+     y los cambios que haga se mantendrán aunque actualice el módulo desde código-->
+    <data noupdate="1">
+        <!-- paper format para el informe de incidencias -->
+        <record id="paperformat_sport_issue" model="report.paperformat">
+            <field name="name">Sport Issue Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+        </record> 
+
+        <!-- paper format para el informe de ligas -->
+        <record id="paperformat_sport_league" model="report.paperformat">
+            <field name="name">Sport League Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+        </record> 
+
+        <!-- paper format para el informe de partidos -->
+        <record id="paperformat_sport_matches" model="report.paperformat">
+            <field name="name">Sport Matches Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+        </record>               
+    </data>
+</odoo>
